@@ -1,54 +1,60 @@
-const API_KEY = "a8345dca5fmsh5f55cdf29c3cc47p1eb068jsnb91e462c3685";
-const HOST = "api-football-v1.p.rapidapi.com";
-
+const TOKEN = "37777ef4141745cd81822768b980e11f";
 const jogosDiv = document.getElementById("jogos");
-document.getElementById("data").innerText =
-  "Hoje: " + new Date().toLocaleDateString("pt-BR");
 
-function headers() {
-  return {
-    "X-RapidAPI-Key": API_KEY,
-    "X-RapidAPI-Host": HOST
-  };
+function abrirAba(aba) {
+  document.querySelectorAll(".abas button").forEach(b =>
+    b.classList.remove("ativa")
+  );
+
+  document.getElementById("tab-" + aba).classList.add("ativa");
+
+  if (aba === "live") carregarAoVivo();
+  if (aba === "hoje") carregarHoje();
+  if (aba === "prox") carregarProximos();
 }
 
-// 🔴 JOGOS AO VIVO
+// 🔴 AO VIVO
 async function carregarAoVivo() {
   jogosDiv.innerHTML = "⏳ Carregando jogos ao vivo...";
 
-  try {
-    const res = await fetch(
-      "https://api-football-v1.p.rapidapi.com/v3/fixtures?next=10",
-      { headers: headers() }
-    );
+  const res = await fetch(
+    "https://api.football-data.org/v4/matches?status=LIVE",
+    { headers: { "X-Auth-Token": TOKEN } }
+  );
 
-    const data = await res.json();
-    mostrarJogos(data.response);
-  } catch {
-    jogosDiv.innerHTML = "❌ Erro ao carregar jogos";
-  }
+  const data = await res.json();
+  mostrarJogos(data.matches);
 }
 
-// 📅 JOGOS DE HOJE
+// 📅 HOJE
 async function carregarHoje() {
   jogosDiv.innerHTML = "⏳ Carregando jogos de hoje...";
 
-  try {
-    const hoje = new Date().toISOString().split("T")[0];
+  const hoje = new Date().toISOString().split("T")[0];
 
-    const res = await fetch(
-      `https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${hoje}`,
-      { headers: headers() }
-    );
+  const res = await fetch(
+    `https://api.football-data.org/v4/matches?dateFrom=${hoje}&dateTo=${hoje}`,
+    { headers: { "X-Auth-Token": TOKEN } }
+  );
 
-    const data = await res.json();
-    mostrarJogos(data.response);
-  } catch {
-    jogosDiv.innerHTML = "❌ Erro ao carregar jogos";
-  }
+  const data = await res.json();
+  mostrarJogos(data.matches);
 }
 
-// 🖥️ MOSTRAR NA TELA
+// ⏭ PRÓXIMOS
+async function carregarProximos() {
+  jogosDiv.innerHTML = "⏳ Carregando próximos jogos...";
+
+  const res = await fetch(
+    "https://api.football-data.org/v4/matches?status=SCHEDULED",
+    { headers: { "X-Auth-Token": TOKEN } }
+  );
+
+  const data = await res.json();
+  mostrarJogos(data.matches);
+}
+
+// MOSTRAR
 function mostrarJogos(lista) {
   jogosDiv.innerHTML = "";
 
@@ -58,18 +64,15 @@ function mostrarJogos(lista) {
   }
 
   lista.forEach(j => {
-    const div = document.createElement("div");
-    div.className = "jogo";
-
-    div.innerHTML = `
-      <strong>${j.teams.home.name} x ${j.teams.away.name}</strong><br>
-      ⚽ ${j.goals.home ?? 0} : ${j.goals.away ?? 0}<br>
-      ⏱ ${j.fixture.status.long}
+    jogosDiv.innerHTML += `
+      <div class="jogo">
+        <strong>${j.homeTeam.name} x ${j.awayTeam.name}</strong><br>
+        ⚽ ${j.score.fullTime.home ?? 0} : ${j.score.fullTime.away ?? 0}<br>
+        ⏱ ${j.status}
+      </div>
     `;
-
-    jogosDiv.appendChild(div);
   });
 }
 
-// carregamento inicial
-carregarHoje();
+// inicial
+abrirAba("hoje");
