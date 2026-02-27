@@ -2,10 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-
-  <!-- ESSENCIAL PARA MOBILE -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Futebol Ao Vivo</title>
 
   <!-- PWA -->
@@ -16,24 +13,26 @@
 </head>
 <body>
 
-  <div class="app">
+<div class="app">
 
-    <header>
-      <h2>⚽ Futebol em Tempo Real</h2>
-      <p id="data"></p>
-    </header>
+  <header>
+    <h2>⚽ Futebol em Tempo Real</h2>
+    <p id="data"></p>
+  </header>
 
-    <nav>
-      <button onclick="carregarAoVivo()">🔴 Ao Vivo</button>
-      <button onclick="carregarHoje()">📅 Hoje</button>
-    </nav>
+  <!-- ABAS -->
+  <nav class="abas">
+    <button id="tab-prox" class="ativa" onclick="abrirAba('prox')">⏭ Próximos</button>
+    <button id="tab-hoje" onclick="abrirAba('hoje')">📅 Hoje</button>
+    <button id="tab-live" onclick="abrirAba('live')">🔴 Ao Vivo</button>
+  </nav>
 
-    <main id="jogos">
-      Carregando...
-    </main>
+  <main id="jogos">
+    Carregando...
+  </main>
 
-  </div>
+</div>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
