@@ -1,4 +1,3 @@
-/* CENTRALIZA COMO APP MOBILE */
 body {
   margin: 0;
   display: flex;
@@ -7,10 +6,10 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* CONTAINER DO APP */
+/* APP MOBILE */
 .app {
   width: 100%;
-  max-width: 420px; /* largura de celular */
+  max-width: 420px;
   min-height: 100vh;
   background: #f2f2f2;
 }
@@ -23,24 +22,28 @@ header {
   text-align: center;
 }
 
-/* MENU */
-nav {
-  padding: 10px;
+/* ABAS */
+.abas {
   display: flex;
-  gap: 10px;
+  background: #ffffff;
 }
 
-button {
+.abas button {
   flex: 1;
   padding: 14px;
-  font-size: 16px;
-  background: green;
-  color: white;
+  font-size: 15px;
+  background: #ffffff;
+  color: #008000;
   border: none;
-  border-radius: 6px;
+  border-bottom: 3px solid transparent;
 }
 
-/* LISTA DE JOGOS */
+.abas button.ativa {
+  border-bottom: 3px solid #008000;
+  font-weight: bold;
+}
+
+/* CONTEÚDO */
 #jogos {
   padding: 10px;
 }
