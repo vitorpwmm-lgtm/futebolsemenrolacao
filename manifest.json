@@ -1,0 +1,8 @@
+{
+  "name": "Futebol sem enrolação",
+  "short_name": "Futebol",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#008000"
+}

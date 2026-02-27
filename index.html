@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- ESSENCIAL PARA MOBILE -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Futebol Ao Vivo</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#008000">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <header>
+      <h2>⚽ Futebol em Tempo Real</h2>
+      <p id="data"></p>
+    </header>
+
+    <nav>
+      <button onclick="carregarAoVivo()">🔴 Ao Vivo</button>
+      <button onclick="carregarHoje()">📅 Hoje</button>
+    </nav>
+
+    <main id="jogos">
+      Carregando...
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

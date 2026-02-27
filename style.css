@@ -1,0 +1,56 @@
+/* CENTRALIZA COMO APP MOBILE */
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  background: #eaeaea;
+  font-family: Arial, sans-serif;
+}
+
+/* CONTAINER DO APP */
+.app {
+  width: 100%;
+  max-width: 420px; /* largura de celular */
+  min-height: 100vh;
+  background: #f2f2f2;
+}
+
+/* TOPO */
+header {
+  background: #008000;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+/* MENU */
+nav {
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  flex: 1;
+  padding: 14px;
+  font-size: 16px;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+/* LISTA DE JOGOS */
+#jogos {
+  padding: 10px;
+}
+
+/* CARD DO JOGO */
+.jogo {
+  background: white;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1.4;
+}
